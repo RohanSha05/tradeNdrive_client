@@ -1,0 +1,9 @@
+{
+    "carModels": [
+      { "id": 1, "name": "Toyota Camry" },
+      { "id": 2, "name": "Honda Accord" },
+      { "id": 3, "name": "Ford Mustang" },
+      { "id": 4, "name": "BMW 3 Series" },
+      { "id": 5, "name": "Audi A4" }
+    ]
+  }

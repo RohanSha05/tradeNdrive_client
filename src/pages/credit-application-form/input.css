@@ -1,0 +1,8 @@
+.checkbox-group label {
+  color: #000; /* Default color */
+  margin-right: 10px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  accent-color: #00244a; /* Change this to your desired color */
+}

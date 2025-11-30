@@ -1,0 +1,179 @@
+// filepath: /C:/Users/msi/Documents/GitHub/isamauto-frontend/src/App.jsx
+import "rc-slider/assets/index.css";
+import "./styles/style.scss";
+import "swiper/css/effect-fade";
+import "swiper/css/grid";
+import "photoswipe/style.css";
+import { lazy, useEffect, useState } from "react";
+import BackToTop from "@/components/common/BacktoTop";
+import { Route, Routes, useLocation } from "react-router-dom";
+import WOW from "./utlis/wow";
+import ScrollTopBehaviour from "./components/common/ScrollToTopBehaviour";
+
+import "@fortawesome/fontawesome-free/css/all.min.css";
+
+import PreLoader from "./components/pre-loader/PreLoader";
+
+import { ApiProvider, useApi } from "./providers/ApiProvider";
+
+const HomePage1 = lazy(() => import("./pages/page"));
+const ListingListPage = lazy(() => import("./pages/car-listings/listing-list"));
+
+const BlogListingDetailsPage1 = lazy(() =>
+	import("./pages/car-details/listing-detail-v1")
+);
+const AboutUsPage = lazy(() => import("./pages/other-pages/about-us"));
+const SaleAgentsPage = lazy(() => import("./pages/agents/sale-agents"));
+const SaleAgentDetailsPage = lazy(() =>
+	import("./pages/agents/sale-agents-detail")
+);
+const CreditApplicationForm = lazy(() =>
+	import("./pages/credit-application-form/CreditApplicationForm")
+);
+const BlogPage = lazy(() => import("./pages/blogs/blog"));
+const BlogGridPage = lazy(() => import("./pages/blogs/blog-grid"));
+const BlogDetailsPage = lazy(() => import("./pages/blogs/blog-detail"));
+const TeamDetails = lazy(() => import("./components/team/TeamDetails"));
+
+const MyReviewPage = lazy(() => import("./pages/dashboard/my-review"));
+const ContactPage = lazy(() => import("./pages/other-pages/contact"));
+const Login = lazy(() => import("./components/modals/Login"));
+const TradeAppFrom = lazy(() =>
+	import("./pages/trade-application-form/TradeAppFrom")
+);
+
+function App() {
+	const [loading, setLoading] = useState(true);
+	const { data, loading: apiLoading } = useApi();
+
+	// Update favicon dynamically
+	useEffect(() => {
+		if (!apiLoading && data.data?.favicon) {
+			const faviconElement = document.getElementById("dynamic-favicon");
+			if (faviconElement) {
+				faviconElement.href = data.data.favicon;
+			} else {
+				faviconElement.href = "/favicon.ico";
+			}
+		}
+	}, [data.data, apiLoading]);
+
+	useEffect(() => {
+		if (typeof window !== "undefined") {
+			import("bootstrap/dist/js/bootstrap.esm").then(() => {});
+		}
+	}, []);
+
+	const { pathname } = useLocation();
+
+	useEffect(() => {
+		const handleScroll = () => {
+			const nav = document.querySelector(".header-lower");
+			if (document.querySelector(".header-fixed") && nav) {
+				if (window.scrollY > 200) {
+					nav.classList.add("is-fixed");
+				} else {
+					nav.classList.remove("is-fixed");
+				}
+
+				if (window.scrollY > 300) {
+					nav.classList.add("is-small");
+				} else {
+					nav.classList.remove("is-small");
+				}
+			}
+		};
+
+		window.addEventListener("scroll", handleScroll);
+
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, [pathname]);
+
+	useEffect(() => {
+		const wow = new WOW({
+			mobile: false,
+			live: false,
+		});
+		wow.init();
+	}, [pathname]);
+
+	useEffect(() => {
+		let timer;
+		if (pathname === "/") {
+			setLoading(true);
+			timer = setTimeout(() => {
+				// Only hide loader if API is also done loading
+				if (!apiLoading) setLoading(false);
+			}, 2000);
+		} else {
+			setLoading(false);
+		}
+		return () => clearTimeout(timer);
+	}, [pathname, apiLoading]);
+
+	useEffect(() => {
+		if (pathname === "/" && !apiLoading) {
+			setLoading(false);
+		}
+	}, [apiLoading, pathname]);
+	return (
+		<>
+			{loading && <PreLoader />}
+			<div id="wrapper">
+				<div id="pagee" className="clearfix">
+					<ApiProvider>
+						<Routes>
+							<Route path="/">
+								<Route
+									index
+									element={
+										<ApiProvider>
+											<div style={{ display: loading ? "none" : "block" }}>
+												<HomePage1 />
+											</div>
+										</ApiProvider>
+									}
+								/>
+								<Route path="car-list" element={<ListingListPage />} />
+
+								<Route
+									path="car-details/:model"
+									element={<BlogListingDetailsPage1 />}
+								/>
+								<Route path="about-us" element={<AboutUsPage />} />
+								<Route path="sale-agents" element={<SaleAgentsPage />} />
+								<Route
+									path="sale-agents-detail/:id"
+									element={<SaleAgentDetailsPage />}
+								/>
+								<Route
+									path="credit-application-form"
+									element={
+										<ApiProvider>
+											<CreditApplicationForm />
+										</ApiProvider>
+									}
+								/>
+								<Route path="blog" element={<BlogPage />} />
+								<Route path="blog-grid" element={<BlogGridPage />} />
+								<Route path="team-details" element={<TeamDetails />} />
+								<Route path="blog-detail/:id" element={<BlogDetailsPage />} />
+								<Route path="my-review" element={<MyReviewPage />} />
+								<Route path="contact" element={<ContactPage />} />
+								<Route path="login" element={<Login />} />
+								<Route path="trade-form" element={<TradeAppFrom />} />
+							</Route>
+						</Routes>
+					</ApiProvider>
+				</div>
+			</div>
+
+			<BackToTop />
+			<ScrollTopBehaviour />
+		</>
+	);
+}
+
+export default App;

@@ -1,0 +1,17 @@
+.custom-popup {
+    width: 300px;
+    border-radius: 10px; /* Custom border-radius */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Custom box-shadow */
+    padding: 0;
+}
+
+.custom-title {
+    font-size: 13px; /* Custom font size */
+    font-weight: bold; /* Bold title */
+    margin: 0;
+}
+
+.custom-icon {
+    font-size: 7px;
+    padding: 0;
+}
