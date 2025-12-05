@@ -34,9 +34,7 @@ export default function Nav() {
 				<a href="/car-list">Cars</a>
 			</li>
 			<li className={`  ${isActive(otherPages) ? "current" : ""} `}>
-				<a href="https://isamrepair.ca/" target="blank">
-					Auto Repair
-				</a>
+				<Link to="/service-booking">Auto Repair</Link>
 			</li>
 			<li className={`dropdown2 ${isActive(otherPages) ? "current" : ""} `}>
 				<a href="#">Research</a>
@@ -57,7 +55,7 @@ export default function Nav() {
 						<a href="/research/finance-tips">Financing Tips</a>
 					</li>
 					<li>
-						<a href="/research/service-repair">Service & Repair</a>
+						<Link to="/service-status">Service Status</Link>
 					</li>
 				</ul>
 			</li>

@@ -58,13 +58,13 @@ export default function Header1() {
 									{/* Main Menu End */}
 								</div>
 								<div className="header-account">
-									<div className="button-boxs-booking">
+									{/* <div className="button-boxs-booking">
 										<a href="/credit-application-form">
 											<button className="sc-button" name="submit" type="submit">
 												<span className="text-white">Apply for Finance</span>
 											</button>
 										</a>
-									</div>
+									</div> */}
 									<div className="ms-3">
 										<HeaderAuth />
 									</div>

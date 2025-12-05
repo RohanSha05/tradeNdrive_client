@@ -6,6 +6,8 @@ import CarInfo from "./detailComponents/CarInfo";
 import ProfileInfo from "./detailComponents/ProfileInfo";
 import Recommended from "./detailComponents/Recommended";
 import Features from "./detailComponents/Features";
+import CarReviews from "./detailComponents/CarReviews";
+import ReviewsSlider from "./detailComponents/ReviewsSlider";
 import SidebarToggleButton from "./SidebarToggleButton";
 import { useParams } from "react-router-dom";
 import config from "@/config/config";
@@ -39,6 +41,11 @@ export default function CarDetails1({ carItem }) {
 												<li className="nav-item">
 													<a className="nav-link" href="#scrollspyHeading3">
 														Recommended cars
+													</a>
+												</li>
+												<li className="nav-item">
+													<a className="nav-link" href="#scrollspyHeading5">
+														Reviews
 													</a>
 												</li>
 											</ul>
@@ -86,7 +93,9 @@ export default function CarDetails1({ carItem }) {
 											<div
 												className="listing-reviews flat-property-detail"
 												id="scrollspyHeading5"
-											></div>
+											>
+												<CarReviews carItem={carItem} />
+											</div>
 										</div>
 									</div>
 								</div>
@@ -101,13 +110,13 @@ export default function CarDetails1({ carItem }) {
 										<CarInfo carItem={carItem} />
 									</div>
 								</div>
-								<div className="widget-listing mb-30">
+								<div className="">
+									<ReviewsSlider carItem={carItem} />
+								</div>
+
+								<div className="widget-listing mb-30" id="scrollspyHeading3">
 									<ProfileInfo carItem={carItem} />
 								</div>
-								<div
-									className="list-icon-pf gap-8 flex-three mb-40"
-									id="scrollspyHeading3"
-								></div>
 								<div className="widget-listing">
 									<div className="listing-header mb-30">
 										<h3>Recommended Used Cars</h3>

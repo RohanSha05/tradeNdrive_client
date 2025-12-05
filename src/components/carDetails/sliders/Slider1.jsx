@@ -88,10 +88,9 @@ export default function Slider1({ carItem }) {
 								src={elm.image_url}
 								onLoad={(e) => handleImageLoad(e, elm.image_url)}
 								style={{
+									width: "100%",
+									height: "500px",
 									objectFit: "cover",
-									maxWidth: "600px",
-									maxHeight: "800px",
-									margin: "0 auto",
 								}}
 							/>
 						</a>

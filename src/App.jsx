@@ -48,6 +48,14 @@ const TradeAppFrom = lazy(() =>
 	import("./pages/trade-application-form/TradeAppFrom")
 );
 import PrivateRoute from "./routes/PrivateRoute";
+const SecureCheckout = lazy(() => import("./pages/SecureCheckout"));
+const ServiceBooking = lazy(() =>
+	import("./pages/service-booking/ServiceBooking")
+);
+const ServiceStatus = lazy(() =>
+	import("./pages/service-booking/ServiceStatus")
+);
+const ServiceAdmin = lazy(() => import("./pages/service-booking/ServiceAdmin"));
 
 function App() {
 	const [loading, setLoading] = useState(true);
@@ -190,6 +198,10 @@ function App() {
 									path="/research/market-trends"
 									element={<CarCompare />}
 								/>
+								<Route path="secure-checkout" element={<SecureCheckout />} />
+								<Route path="service-booking" element={<ServiceBooking />} />
+								<Route path="service-status" element={<ServiceStatus />} />
+								<Route path="service-admin" element={<ServiceAdmin />} />
 							</Route>
 						</Routes>
 					</ApiProvider>

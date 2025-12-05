@@ -1,0 +1,472 @@
+/* SecureCheckout.scss */
+
+.secure-checkout {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  padding: 40px 0;
+
+  .checkout-header {
+    h2 {
+      color: #E90A1D;
+      font-weight: bold;
+      font-size: 2.5rem;
+      
+      i {
+        color: #28a745;
+      }
+    }
+  }
+
+  // Progress Steps
+  .progress-steps {
+    max-width: 800px;
+    margin: 0 auto;
+
+    .step {
+      text-align: center;
+      flex: 1;
+      position: relative;
+
+      .step-number {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #e9ecef;
+        color: #6c757d;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+        transition: all 0.3s;
+      }
+
+      .step-label {
+        font-size: 0.85rem;
+        color: #6c757d;
+        font-weight: 500;
+      }
+
+      &.active {
+        .step-number {
+          background: #E90A1D;
+          color: white;
+          box-shadow: 0 4px 12px rgba(233, 10, 29, 0.3);
+        }
+
+        .step-label {
+          color: #E90A1D;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .step-line {
+      flex: 1;
+      height: 2px;
+      background: #e9ecef;
+      margin: 25px 10px 0;
+    }
+  }
+
+  // Section Headers
+  .checkout-section {
+    .section-header {
+      margin-bottom: 15px;
+      
+      h4 {
+        color: #2c3e50;
+        font-weight: 600;
+        font-size: 1.25rem;
+        
+        i {
+          color: #E90A1D;
+        }
+      }
+    }
+  }
+
+  // Cards
+  .card {
+    border: none;
+    border-radius: 12px;
+    margin-bottom: 20px;
+
+    .card-header {
+      border-radius: 12px 12px 0 0 !important;
+      padding: 15px 20px;
+    }
+
+    .card-body {
+      padding: 25px;
+    }
+  }
+
+  // Pricing Rows
+  .pricing-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #e9ecef;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &.total {
+      padding-top: 15px;
+      font-size: 1.2rem;
+    }
+  }
+
+  // Payment Method Cards
+  .payment-method-card {
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    height: 100%;
+
+    input[type="radio"] {
+      margin-bottom: 10px;
+    }
+
+    i {
+      color: #6c757d;
+      transition: color 0.3s;
+    }
+
+    h6 {
+      margin: 10px 0 5px;
+      font-weight: 600;
+    }
+
+    &:hover {
+      border-color: #E90A1D;
+      box-shadow: 0 4px 12px rgba(233, 10, 29, 0.1);
+
+      i {
+        color: #E90A1D;
+      }
+    }
+
+    &.selected {
+      border-color: #E90A1D;
+      background: rgba(233, 10, 29, 0.05);
+      box-shadow: 0 4px 12px rgba(233, 10, 29, 0.2);
+
+      i {
+        color: #E90A1D;
+      }
+    }
+  }
+
+  // Delivery Option Cards
+  .delivery-option-card {
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    height: 100%;
+
+    input[type="radio"] {
+      margin-bottom: 10px;
+    }
+
+    i {
+      color: #6c757d;
+      transition: color 0.3s;
+    }
+
+    h6 {
+      margin: 10px 0 5px;
+      font-weight: 600;
+    }
+
+    &:hover {
+      border-color: #E90A1D;
+      box-shadow: 0 4px 12px rgba(233, 10, 29, 0.1);
+
+      i {
+        color: #E90A1D;
+      }
+    }
+
+    &.selected {
+      border-color: #E90A1D;
+      background: rgba(233, 10, 29, 0.05);
+      box-shadow: 0 4px 12px rgba(233, 10, 29, 0.2);
+
+      i {
+        color: #E90A1D;
+      }
+    }
+  }
+
+  // Form Controls
+  .form-control,
+  .form-select {
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    padding: 12px 15px;
+    transition: all 0.3s;
+
+    &:focus {
+      border-color: #E90A1D;
+      box-shadow: 0 0 0 0.2rem rgba(233, 10, 29, 0.15);
+    }
+  }
+
+  .form-label {
+    font-weight: 500;
+    color: #495057;
+    margin-bottom: 8px;
+  }
+
+  // Buttons
+  .btn {
+    border-radius: 8px;
+    padding: 12px 30px;
+    font-weight: 600;
+    transition: all 0.3s;
+
+    &.btn-primary {
+      background-color: #E90A1D;
+      border-color: #E90A1D;
+
+      &:hover {
+        background-color: #c10817;
+        border-color: #c10817;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(233, 10, 29, 0.3);
+      }
+    }
+
+    &.btn-success {
+      background-color: #28a745;
+      border-color: #28a745;
+
+      &:hover {
+        background-color: #218838;
+        border-color: #218838;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+      }
+    }
+
+    &.btn-outline-secondary {
+      border-color: #6c757d;
+      color: #6c757d;
+
+      &:hover {
+        background-color: #6c757d;
+        color: white;
+      }
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  // Order Summary Sidebar
+  .order-summary-sidebar {
+    .summary-vehicle {
+      img {
+        border-radius: 8px;
+        max-height: 150px;
+        object-fit: cover;
+      }
+
+      h6 {
+        font-weight: 600;
+        margin-top: 10px;
+      }
+    }
+
+    .summary-pricing {
+      font-size: 0.95rem;
+    }
+
+    .security-info {
+      padding-top: 15px;
+    }
+  }
+
+  // Financing Summary
+  .financing-summary {
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+
+  // Alerts
+  .alert {
+    border-radius: 8px;
+    border: none;
+
+    &.alert-info {
+      background-color: #d1ecf1;
+      color: #0c5460;
+    }
+
+    &.alert-warning {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+
+    &.alert-secondary {
+      background-color: #e9ecef;
+      color: #495057;
+    }
+  }
+
+  // Checkboxes
+  .form-check {
+    .form-check-input {
+      width: 1.2rem;
+      height: 1.2rem;
+      margin-top: 0.15rem;
+      cursor: pointer;
+
+      &:checked {
+        background-color: #E90A1D;
+        border-color: #E90A1D;
+      }
+
+      &:focus {
+        border-color: #E90A1D;
+        box-shadow: 0 0 0 0.2rem rgba(233, 10, 29, 0.15);
+      }
+    }
+
+    .form-check-label {
+      cursor: pointer;
+      margin-left: 8px;
+    }
+  }
+
+  // File Upload
+  input[type="file"] {
+    cursor: pointer;
+
+    &::file-selector-button {
+      background-color: #E90A1D;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-right: 10px;
+      transition: all 0.3s;
+
+      &:hover {
+        background-color: #c10817;
+      }
+    }
+  }
+
+  // Confirmation Screen
+  &.confirmation-screen {
+    .success-icon {
+      animation: scaleIn 0.5s ease-in-out;
+    }
+
+    @keyframes scaleIn {
+      0% {
+        transform: scale(0);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+  }
+
+  // Security Badges
+  .security-badges {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-top: 15px;
+  }
+
+  .payment-methods {
+    .form-check-inline {
+      margin-right: 20px;
+
+      .form-check-label {
+        font-weight: 500;
+      }
+    }
+  }
+
+  // Responsive Design
+  @media (max-width: 991px) {
+    .order-summary-sidebar {
+      margin-top: 30px;
+      position: relative !important;
+      top: 0 !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .checkout-header {
+      h2 {
+        font-size: 1.8rem;
+      }
+    }
+
+    .progress-steps {
+      .step {
+        .step-number {
+          width: 40px;
+          height: 40px;
+          font-size: 1rem;
+        }
+
+        .step-label {
+          font-size: 0.75rem;
+        }
+      }
+
+      .step-line {
+        margin: 20px 5px 0;
+      }
+    }
+
+    .payment-method-card,
+    .delivery-option-card {
+      margin-bottom: 15px;
+    }
+
+    .btn-lg {
+      padding: 10px 20px;
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    padding: 20px 0;
+
+    .card-body {
+      padding: 15px;
+    }
+
+    .progress-steps {
+      .step-label {
+        display: none;
+      }
+    }
+  }
+}

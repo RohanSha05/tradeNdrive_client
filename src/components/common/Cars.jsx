@@ -213,10 +213,15 @@ export default function Cars({ parentClass = "tf-section" }) {
 																${car.price}
 															</div>
 															<button
-																className="btn btn-sm btn-outline-primary"
+																className="btn btn-sm"
 																data-bs-toggle="modal"
 																data-bs-target={`#reviewModal-${car.id}`}
 																onClick={() => setSelectedCarForReview(car)}
+																style={{
+																	backgroundColor: "#E90A1D",
+																	color: "white",
+																	border: "none",
+																}}
 															>
 																<i className="fas fa-star me-1"></i>
 																Rate

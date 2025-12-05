@@ -19,7 +19,6 @@ export default function DashboardPage({ dashboardData }) {
 	return (
 		<>
 			<MetaComponent meta={metadata} />
-			<Sidebar />
 			<div id="wrapper-dashboard">
 				<div id="pagee" className="clearfix">
 					<Header4 dashboardData={dashboardData} />

@@ -13,13 +13,13 @@ export default function StarRating({
 	rating = 0,
 	maxStars = 5,
 	size = 16,
-	color = "#FFA500",
+	color = "#E90A1D",
 	showRating = false,
 	totalReviews = 0,
 }) {
 	// Ensure rating is between 0 and maxStars
 	const normalizedRating = Math.min(Math.max(rating, 0), maxStars);
-	
+
 	// Calculate full stars, half stars, and empty stars
 	const fullStars = Math.floor(normalizedRating);
 	const hasHalfStar = normalizedRating % 1 >= 0.5;

@@ -1,0 +1,383 @@
+/* ServiceBooking.scss - ISAM Auto Style */
+
+.service-booking {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+
+  // Hero Section
+  .hero-section {
+    background: linear-gradient(135deg, #E90A1D 0%, #b00616 100%);
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)" /></svg>');
+      opacity: 0.3;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-light {
+      background: white;
+      color: #E90A1D;
+      font-weight: 600;
+      border: none;
+      padding: 12px 30px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: #f8f9fa;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+    }
+
+    .btn-outline-light {
+      border: 2px solid white;
+      color: white;
+      font-weight: 600;
+      padding: 12px 30px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: white;
+        color: #E90A1D;
+        transform: translateY(-2px);
+      }
+    }
+
+    img {
+      border: 4px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  // Service Cards
+  .card {
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(233, 10, 29, 0.15) !important;
+      border-color: #E90A1D;
+
+    //   i {
+    //     color: #E90A1D !important;
+    //   }
+    }
+
+    i {
+      transition: all 0.3s ease;
+    }
+  }
+
+  // Section Headers
+  h2 {
+    color: #1a1a1a;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    position: relative;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: #E90A1D;
+      margin: 16px auto 0;
+      border-radius: 2px;
+    }
+  }
+
+  // Benefits Section
+  .text-success {
+    color: #E90A1D !important;
+  }
+
+  // Service Cards
+  .service-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(233, 10, 29, 0.15);
+      border-color: #E90A1D !important;
+    }
+
+    .fa {
+      transition: all 0.3s ease;
+    }
+
+    &:hover .fa {
+      color: #E90A1D !important;
+      transform: scale(1.1);
+    }
+  }
+
+  // Pricing Cards
+  .display-6 {
+    font-weight: 700;
+  }
+
+  .btn-primary {
+    background: #E90A1D;
+    border: none;
+    font-weight: 600;
+    padding: 12px 32px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: #b00616;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(233, 10, 29, 0.3);
+    }
+  }
+
+  // Step Numbers
+  .badge.bg-primary {
+    background: #E90A1D !important;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(233, 10, 29, 0.3);
+  }
+
+  // FAQ Accordion
+  .accordion {
+    .accordion-button {
+      background: white;
+      color: #1a1a1a;
+      font-weight: 600;
+      border: none;
+      
+      &:not(.collapsed) {
+        background: #E90A1D;
+        color: white;
+        box-shadow: none;
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 0.25rem rgba(233, 10, 29, 0.25);
+        border-color: #E90A1D;
+      }
+    }
+
+    .accordion-item {
+      border: 1px solid #e9ecef;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+  }
+
+  // Trust Elements
+  .trust-element {
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    .fa-certificate,
+    .fa-star,
+    .fa-shield-alt {
+      color: #E90A1D;
+    }
+  }
+
+  // Related Services Cards
+  .btn-outline-primary {
+    color: #E90A1D;
+    border-color: #E90A1D;
+    font-weight: 600;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: #E90A1D;
+      color: white;
+      transform: translateY(-2px);
+    }
+  }
+
+  // Form Section
+  #booking-form {
+    .card {
+      border: none;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-header {
+      background: linear-gradient(135deg, #E90A1D 0%, #b00616 100%);
+      color: white;
+      padding: 16px 20px;
+      margin: -1.5rem -1.5rem 1.5rem;
+      border-radius: 8px 8px 0 0;
+
+      h4 {
+        margin: 0;
+        font-weight: 600;
+        color: #ffffff;
+      }
+
+      i {
+        color: white;
+      }
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: #495057;
+      margin-bottom: 8px;
+    }
+
+    .form-control,
+    .form-select {
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      padding: 10px 15px;
+      transition: all 0.3s ease;
+
+      &:focus {
+        border-color: #E90A1D;
+        box-shadow: 0 0 0 0.2rem rgba(233, 10, 29, 0.15);
+      }
+    }
+
+    .btn-lg {
+      padding: 14px 40px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 8px;
+    }
+  }
+
+  // Icon Colors
+  .fa-tools,
+  .fa-cog,
+  .fa-snowflake,
+  .fa-bolt,
+  .fa-paint-brush,
+  .fa-upload,
+  .fa-car,
+  .fa-chart-line,
+  .fa-phone {
+    &.text-primary {
+      color: #E90A1D !important;
+    }
+  }
+
+  // Images
+  img {
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  // Background Light Sections
+  .bg-light {
+    background-color: #ffffff !important;
+  }
+
+  // Responsive
+  @media (max-width: 768px) {
+    .hero-section {
+      h1 {
+        font-size: 2rem !important;
+      }
+
+      .btn-lg {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+      }
+    }
+
+    h2 {
+      font-size: 1.75rem;
+    }
+  }
+
+  // Hover Effects for Service Cards
+  .col-md-6,
+  .col-md-4,
+  .col-md-3 {
+    .card {
+      height: 100%;
+    }
+  }
+
+  // Timeline for Activity
+  .timeline {
+    position: relative;
+
+    &-item {
+      position: relative;
+      padding-left: 30px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 7px;
+        top: 30px;
+        bottom: -10px;
+        width: 2px;
+        background: #e9ecef;
+      }
+
+      &:last-child::before {
+        display: none;
+      }
+    }
+
+    &-marker {
+      position: absolute;
+      left: 0;
+      top: 5px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 2px #e9ecef;
+    }
+  }
+}
+
+// Animation
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.service-booking {
+  section {
+    animation: fadeInUp 0.6s ease-out;
+  }
+}

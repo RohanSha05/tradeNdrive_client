@@ -2,7 +2,13 @@ import React, { useContext } from "react";
 import { AuthContext } from "@/providers/AuthProvider";
 
 /**
- * Example of how to add authentication status to your header
+ * HeaderAuth Component - ISAM Auto Authentication & Service Management
+ * 
+ * Features:
+ * - User authentication status display
+ * - Service status indicator with pending count
+ * - Emergency service quick access
+ * - Comprehensive user dropdown menu with service options
  * 
  * Usage:
  * 1. Import this component in your header file
@@ -47,6 +53,34 @@ const HeaderAuth = () => {
 	// Show user info when logged in
 	return (
 		<div className="header-user-info d-flex align-items-center">
+			{/* Service Status Indicator */}
+			<div className="me-3">
+				<a 
+					href="/service-status" 
+					className="btn btn-sm position-relative"
+					style={{ 
+						backgroundColor: "#E90A1D", 
+						color: "white",
+						border: "none",
+						padding: "6px 12px",
+						borderRadius: "20px",
+						fontSize: "0.85rem",
+						textDecoration: "none"
+					}}
+					title="Check Service Status"
+				>
+					<i className="fas fa-tools me-1"></i>
+					Service Status
+					<span 
+						className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning"
+						style={{ fontSize: "0.7em", padding: "2px 6px" }}
+					>
+						1
+					</span>
+				</a>
+			</div>
+
+			
 			<div className="dropdown">
 				<button
 					className="btn btn-link dropdown-toggle text-decoration-none"
@@ -105,9 +139,46 @@ const HeaderAuth = () => {
 						</a>
 					</li>
 					<li>
+						<a className="dropdown-item" href="/service-booking">
+							<i className="fas fa-calendar-plus me-2"></i>
+							Book New Service
+						</a>
+					</li>
+					<li>
+						<a className="dropdown-item" href="/service-status">
+							<i className="fas fa-clock me-2"></i>
+							Service Status
+						</a>
+					</li>
+					<li>
+						<a className="dropdown-item" href="/service-history">
+							<i className="fas fa-history me-2"></i>
+							Service History
+						</a>
+					</li>
+					<li>
 						<a className="dropdown-item" href="/my-review">
 							<i className="fas fa-star me-2"></i>
 							My Reviews
+						</a>
+					</li>
+					<li>
+						<a className="dropdown-item" href="/profile">
+							<i className="fas fa-user-cog me-2"></i>
+							Profile & Settings
+						</a>
+					</li>
+				
+					<li>
+						<a className="dropdown-item" href="/contact">
+							<i className="fas fa-phone me-2"></i>
+							Contact Support
+						</a>
+					</li>
+					<li>
+						<a className="dropdown-item" href="/faq">
+							<i className="fas fa-question-circle me-2"></i>
+							Help & FAQ
 						</a>
 					</li>
 					<li>

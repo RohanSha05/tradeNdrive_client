@@ -136,7 +136,7 @@ export default function CarReviewModal({ carId, carTitle, onReviewSubmitted }) {
 												fontSize: "32px",
 												color:
 													star <= (hoveredRating || rating)
-														? "#FFA500"
+														? "#E90A1D"
 														: "#ddd",
 												cursor: "pointer",
 												transition: "color 0.2s",
@@ -193,8 +193,13 @@ export default function CarReviewModal({ carId, carTitle, onReviewSubmitted }) {
 							</button>
 							<button
 								type="submit"
-								className="btn btn-primary"
+								className="btn"
 								disabled={isSubmitting || !user}
+								style={{
+									backgroundColor: "#E90A1D",
+									color: "white",
+									border: "none",
+								}}
 							>
 								{isSubmitting ? (
 									<>

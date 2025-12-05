@@ -59,7 +59,7 @@ export default function Header2({ carItem }) {
 								</div>
 								<div className="header-account flex align-center">
 									<div className="register">
-										<div className="flex align-center">
+										{/* <div className="flex align-center">
 											<div className="button-boxs-booking">
 												<Link
 													to={"/credit-application-form"}
@@ -72,7 +72,7 @@ export default function Header2({ carItem }) {
 													</span>
 												</Link>
 											</div>
-										</div>
+										</div> */}
 									</div>
 									<div className="ms-3">
 										<HeaderAuth />
