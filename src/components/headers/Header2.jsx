@@ -4,6 +4,7 @@ import Nav from "./Nav";
 import MobileNav from "./MobileNav";
 import { Link } from "react-router-dom";
 import { useApi } from "@/providers/ApiProvider";
+import HeaderAuth from "../common/HeaderAuth";
 
 export default function Header2({ carItem }) {
 	const { data, loading } = useApi();
@@ -72,6 +73,9 @@ export default function Header2({ carItem }) {
 												</Link>
 											</div>
 										</div>
+									</div>
+									<div className="ms-3">
+										<HeaderAuth />
 									</div>
 									<div className="flat-bt-top"></div>
 								</div>
@@ -145,7 +149,7 @@ export default function Header2({ carItem }) {
 										</svg>
 									</div>
 									<p className="text-color-2">
-									1009 20th St. W, Saskatoon S7M0Y6
+										1009 20th St. W, Saskatoon S7M0Y6
 									</p>
 								</li>
 								<li className="flex-three gap-8">

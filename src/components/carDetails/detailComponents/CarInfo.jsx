@@ -8,6 +8,8 @@ export default function CarInfo({ carItem }) {
 		navigate("/credit-application-form", { state: { title: carItem?.title } });
 	};
 
+	console.log("Detailed Price: ", carItem);
+
 	return (
 		<>
 			<div className="icon-box flex flex-wrap">
@@ -29,7 +31,7 @@ export default function CarInfo({ carItem }) {
 				</div>
 			</div>
 			<div className="money text-color-3 font">
-				${carItem.original_price?.toLocaleString()}
+				${carItem.selling_price?.toLocaleString()}
 			</div>
 			<div className="price-wrap">
 				<p className="fs-12 lh-16 text-color-2">

@@ -19,6 +19,7 @@ import GoogleReviewsWidget from "@/components/GoogleReviewsWidget/GoogleReviewsW
 import { useApi } from "@/providers/ApiProvider";
 import Topbar from "@/components/headers/Topbar";
 import SoldCars from "@/components/common/SoldCars";
+import CarSearchbyTitle from "@/components/carSearchbyTitle/CarSearchbyTitle";
 
 export default function HomePage1() {
 	const { data, loading } = useApi();
@@ -38,6 +39,7 @@ export default function HomePage1() {
 			</div>
 			<Hero />
 			<Filter />
+			{/* <CarSearchbyTitle></CarSearchbyTitle> */}
 			<CarBrands2></CarBrands2>
 			<Cars />
 			<SoldCars />

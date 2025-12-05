@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useApi } from "@/providers/ApiProvider";
 import { useNavigate } from "react-router-dom";
+import CarSearchbyTitle from "../carSearchbyTitle/carSearchbyTitle";
 
 export default function FlatFilter({
 	styleClass = "",

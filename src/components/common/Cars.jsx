@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useApi } from "@/providers/ApiProvider";
-
-
+import StarRating from "./StarRating";
+import CarReviewModal from "./CarReviewModal";
 
 export default function Cars({ parentClass = "tf-section" }) {
 	const { carListings, bodyTypes } = useApi();
@@ -11,6 +11,7 @@ export default function Cars({ parentClass = "tf-section" }) {
 
 	const [selectedType, setSelectedType] = useState("All");
 	const [filtered, setFiltered] = useState([]);
+	const [selectedCarForReview, setSelectedCarForReview] = useState(null);
 
 	useEffect(() => {
 		if (!data || !Array.isArray(data)) return;
@@ -20,6 +21,7 @@ export default function Cars({ parentClass = "tf-section" }) {
 			.map(
 				(item) =>
 					console.log("filterred item", item) || {
+						id: item.id || "",
 						imgSrc: item.featured_image?.image_url || "",
 						title: item.title || "",
 						type: item.body_type?.title || "",
@@ -31,6 +33,8 @@ export default function Cars({ parentClass = "tf-section" }) {
 						year: item.model_year?.year || "",
 						totalImage: item.total_images || 0,
 						carStatus: item.status || "Featured",
+						rating: item.average_rating || 4.2, // Mock data - replace with actual
+						totalReviews: item.total_reviews || 0, // Mock data - replace with actual
 					}
 			);
 		setFiltered(mappedData);
@@ -48,6 +52,7 @@ export default function Cars({ parentClass = "tf-section" }) {
 				: newData.filter((item) => item.body_type?.title === selectedType);
 		console.log("filteredData", filteredData);
 		const mappedFiltered = filteredData.map((item) => ({
+			id: item.id || "",
 			imgSrc: item.featured_image?.image_url || "",
 			title: item.title || "",
 			type: item.body_type?.title || "",
@@ -59,6 +64,8 @@ export default function Cars({ parentClass = "tf-section" }) {
 			year: item.model_year?.year || "",
 			totalImage: item.total_images || 0,
 			carStatus: item.status || "Featured",
+			rating: item.average_rating || 4.2, // Mock data - replace with actual
+			totalReviews: item.total_reviews || 0, // Mock data - replace with actual
 		}));
 		setFiltered(mappedFiltered);
 	}, [selectedType, data]);
@@ -175,6 +182,17 @@ export default function Cars({ parentClass = "tf-section" }) {
 																{car.title}
 															</Link>
 														</h5>
+
+														{/* Star Rating */}
+														<div className="my-2">
+															<StarRating
+																rating={car.rating}
+																showRating={true}
+																totalReviews={car.totalReviews}
+																size={14}
+															/>
+														</div>
+
 														<div className="icon-box flex flex-wrap">
 															<div className="icons flex-three">
 																<i className="icon-autodeal-km1" />
@@ -189,8 +207,20 @@ export default function Cars({ parentClass = "tf-section" }) {
 																<span>{car.transmission}</span>
 															</div>
 														</div>
-														<div className="money fs-20 fw-5 lh-25 text-color-3">
-															${car.price}
+
+														<div className="d-flex justify-content-between align-items-center mt-3">
+															<div className="money fs-20 fw-5 lh-25 text-color-3">
+																${car.price}
+															</div>
+															<button
+																className="btn btn-sm btn-outline-primary"
+																data-bs-toggle="modal"
+																data-bs-target={`#reviewModal-${car.id}`}
+																onClick={() => setSelectedCarForReview(car)}
+															>
+																<i className="fas fa-star me-1"></i>
+																Rate
+															</button>
 														</div>
 													</div>
 												</div>
@@ -202,6 +232,18 @@ export default function Cars({ parentClass = "tf-section" }) {
 					</div>
 				</div>
 			</div>
+
+			{/* Review Modal */}
+			{selectedCarForReview && (
+				<CarReviewModal
+					carId={selectedCarForReview.id}
+					carTitle={selectedCarForReview.title}
+					onReviewSubmitted={() => {
+						// Optionally refresh reviews here
+						console.log("Review submitted for:", selectedCarForReview.title);
+					}}
+				/>
+			)}
 		</section>
 	);
 }

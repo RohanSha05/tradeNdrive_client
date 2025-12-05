@@ -15,6 +15,9 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import PreLoader from "./components/pre-loader/PreLoader";
 
 import { ApiProvider, useApi } from "./providers/ApiProvider";
+import CarComparison from "./pages/car-comparison";
+import CarCompare from "./components/common/CarCompare";
+import CarComparePage from "./pages/car-comparison";
 
 const HomePage1 = lazy(() => import("./pages/page"));
 const ListingListPage = lazy(() => import("./pages/car-listings/listing-list"));
@@ -38,9 +41,13 @@ const TeamDetails = lazy(() => import("./components/team/TeamDetails"));
 const MyReviewPage = lazy(() => import("./pages/dashboard/my-review"));
 const ContactPage = lazy(() => import("./pages/other-pages/contact"));
 const Login = lazy(() => import("./components/modals/Login"));
+const Register = lazy(() => import("./components/modals/Register"));
+const ForgotPassword = lazy(() => import("./components/modals/ForgotPassword"));
+const DashboardPage = lazy(() => import("./pages/dashboard/dashboard"));
 const TradeAppFrom = lazy(() =>
 	import("./pages/trade-application-form/TradeAppFrom")
 );
+import PrivateRoute from "./routes/PrivateRoute";
 
 function App() {
 	const [loading, setLoading] = useState(true);
@@ -163,7 +170,26 @@ function App() {
 								<Route path="my-review" element={<MyReviewPage />} />
 								<Route path="contact" element={<ContactPage />} />
 								<Route path="login" element={<Login />} />
+								<Route path="register" element={<Register />} />
+								<Route path="forgot-password" element={<ForgotPassword />} />
+								<Route
+									path="dashboard"
+									element={
+										<PrivateRoute>
+											<DashboardPage />
+										</PrivateRoute>
+									}
+								/>
 								<Route path="trade-form" element={<TradeAppFrom />} />
+								<Route
+									path="/research/car-comparison"
+									element={<CarComparePage />}
+								/>
+
+								<Route
+									path="/research/market-trends"
+									element={<CarCompare />}
+								/>
 							</Route>
 						</Routes>
 					</ApiProvider>

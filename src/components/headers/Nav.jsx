@@ -38,6 +38,29 @@ export default function Nav() {
 					Auto Repair
 				</a>
 			</li>
+			<li className={`dropdown2 ${isActive(otherPages) ? "current" : ""} `}>
+				<a href="#">Research</a>
+				<ul>
+					<li>
+						<a href="/research/car-comparison">Car Comparison</a>
+					</li>
+					<li>
+						<a href="/research/market-trends">Market Trends</a>
+					</li>
+					<li>
+						<a href="/research/buying-guides">Buying Guides</a>
+					</li>
+					<li>
+						<a href="/research/car-reviews">Car Reviews</a>
+					</li>
+					<li>
+						<a href="/research/finance-tips">Financing Tips</a>
+					</li>
+					<li>
+						<a href="/research/service-repair">Service & Repair</a>
+					</li>
+				</ul>
+			</li>
 
 			<li className={"contact" == pathname.split("/")[1] ? "current" : ""}>
 				<Link to={`/contact`}>Contact</Link>

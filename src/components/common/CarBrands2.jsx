@@ -3,6 +3,7 @@ import { useApi } from "@/providers/ApiProvider";
 import { Autoplay, Grid, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
+import CarSearchbyTitle from "../carSearchbyTitle/carSearchbyTitle";
 
 export default function CarBrands2() {
 	const { carBrands } = useApi();

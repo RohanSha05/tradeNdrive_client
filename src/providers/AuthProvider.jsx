@@ -1,67 +1,65 @@
-import config from "@/config/config";
 import PropTypes from "prop-types";
 import React, { createContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { auth } from "@/config/firebase.init";
+import {
+	createUserWithEmailAndPassword,
+	signInWithEmailAndPassword,
+	signOut,
+	onAuthStateChanged,
+	GoogleAuthProvider,
+	signInWithPopup,
+	updateProfile,
+	sendPasswordResetEmail,
+} from "firebase/auth";
 
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
+	const [loading, setLoading] = useState(true);
+	const googleProvider = new GoogleAuthProvider();
 
-	const signInUser = async (email, password) => {
-		try {
-			// const response = await fetch(`${config.apiEndpoint}/login/`, {
-			const response = await fetch(`${config.apiEndpoint}/login/`, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({ email, password }),
-				mode: "cors",
-			});
-			const data = await response.json();
-
-			if (data.status === "success") {
-				localStorage.setItem("authToken", data.token);
-				setUser({ email }); // Set the user state with the email
-				return { status: "success" };
-			} else {
-				throw new Error(data.message || "Login failed. Please try again.");
-			}
-		} catch (error) {
-			console.error("Error during login:", error);
-			throw new Error("Something went wrong. Please try again later.");
-		}
+	// Create user with email and password
+	const createUser = (email, password) => {
+		setLoading(true);
+		return createUserWithEmailAndPassword(auth, email, password);
 	};
 
-	const logOut = async () => {
-		try {
-			const response = await fetch(`${config.apiEndpoint}/logout/`, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Token ${localStorage.getItem("authToken")}`,
-				},
-				mode: "cors",
-			});
+	// Sign in user with email and password
+	const signInUser = (email, password) => {
+		setLoading(true);
+		return signInWithEmailAndPassword(auth, email, password);
+	};
 
-			if (!response.ok) {
-				const errorData = await response.json();
-				console.error("Logout error data:", errorData);
-				if (errorData.message === "Invalid token or user not authenticated") {
-					localStorage.removeItem("authToken");
-					setUser(null);
-				} else {
-					throw new Error("Logout failed. Please try again.");
-				}
-			} else {
-				const data = await response.json();
-				localStorage.removeItem("authToken");
-				setUser(null);
+	// Sign in with Google
+	const signInWithGoogle = () => {
+		setLoading(true);
+		return signInWithPopup(auth, googleProvider);
+	};
+
+	// Update user profile
+	const updateUserProfile = (name, photo) => {
+		return updateProfile(auth.currentUser, {
+			displayName: name,
+			photoURL: photo,
+		});
+	};
+
+	// Reset password
+	const resetPassword = (email) => {
+		return sendPasswordResetEmail(auth, email);
+	};
+
+	// Log out user
+	const logOut = () => {
+		setLoading(true);
+		return signOut(auth)
+			.then(() => {
 				Swal.fire({
 					position: "top-end",
 					icon: "success",
-					title: `${data.message}`,
+					title: "Successfully logged out",
 					showConfirmButton: false,
 					timer: 1500,
 					customClass: {
@@ -70,23 +68,35 @@ const AuthProvider = ({ children }) => {
 						icon: "custom-icon",
 					},
 				});
-			}
-		} catch (error) {
-			console.error("Error during logout:", error);
-			throw new Error("Something went wrong. Please try again later.");
-		}
+			})
+			.catch((error) => {
+				console.error("Logout error:", error);
+				throw error;
+			});
 	};
 
+	// Observer for auth state changes
 	useEffect(() => {
-		// Check if the user is already logged in
-		const token = localStorage.getItem("authToken");
-		if (token) {
-			// You can add more logic here to validate the token if needed
-			setUser({ user }); // Set the user state with a dummy email
-		}
+		const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+			setUser(currentUser);
+			setLoading(false);
+		});
+
+		return () => {
+			unsubscribe();
+		};
 	}, []);
 
-	const authInfo = { user, signInUser, logOut };
+	const authInfo = {
+		user,
+		loading,
+		createUser,
+		signInUser,
+		signInWithGoogle,
+		updateUserProfile,
+		resetPassword,
+		logOut,
+	};
 
 	return (
 		<AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
