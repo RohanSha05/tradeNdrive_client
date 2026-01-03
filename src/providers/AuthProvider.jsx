@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { auth } from "@/config/firebase.init";
 import {
@@ -14,6 +14,14 @@ import {
 } from "firebase/auth";
 
 export const AuthContext = createContext(null);
+
+export const useAuth = () => {
+	const context = useContext(AuthContext);
+	if (!context) {
+		throw new Error("useAuth must be used within an AuthProvider");
+	}
+	return context;
+};
 
 const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(null);

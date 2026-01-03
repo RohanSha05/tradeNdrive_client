@@ -7,6 +7,7 @@ import { allCars } from "@/data/cars";
 import MetaComponent from "@/components/common/MetaComponent";
 import { useApi } from "@/providers/ApiProvider";
 import config from "@/config/config";
+import { useTrackInteraction } from "@/hooks/useTrackInteraction";
 
 export default function BlogListingDetailsPage1() {
 	const { data, carListings, loading } = useApi();
@@ -32,6 +33,9 @@ export default function BlogListingDetailsPage1() {
 			);
 		}) || carListings.data?.[0];
 
+	// Track view interaction
+	useTrackInteraction(carItem?.id, "view");
+
 	useEffect(() => {
 		if (!params.model) return;
 		const url = `${config.apiEndpoint}/car-listings/${params.model}`;
@@ -50,7 +54,6 @@ export default function BlogListingDetailsPage1() {
 				setError(error.message);
 			});
 	}, [params.model]);
-
 
 	return (
 		<>

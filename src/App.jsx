@@ -48,6 +48,7 @@ const TradeAppFrom = lazy(() =>
 	import("./pages/trade-application-form/TradeAppFrom")
 );
 import PrivateRoute from "./routes/PrivateRoute";
+import Chatbot from "./components/chatbot/Chatbot";
 const SecureCheckout = lazy(() => import("./pages/SecureCheckout"));
 const ServiceBooking = lazy(() =>
 	import("./pages/service-booking/ServiceBooking")
@@ -210,6 +211,7 @@ function App() {
 
 			<BackToTop />
 			<ScrollTopBehaviour />
+			<Chatbot />
 		</>
 	);
 }

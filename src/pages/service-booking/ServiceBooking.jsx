@@ -41,18 +41,73 @@ export default function ServiceBooking() {
 		e.preventDefault();
 		setIsSubmitting(true);
 
+		// Create booking object
+		const newBooking = {
+			id: `SRV-${new Date().getFullYear()}-${String(Date.now()).slice(-3)}`,
+			serviceCategory: formData.serviceCategory,
+			workshopLocation: formData.workshopLocation,
+			preferredDate: formData.preferredDate,
+			status: "Pending",
+			vehicle: `${formData.vehicleYear} ${formData.vehicleMake} ${formData.vehicleModel}`,
+			assignedMechanic: null,
+			estimatedCompletion: new Date(
+				new Date(formData.preferredDate).getTime() + 2 * 24 * 60 * 60 * 1000
+			)
+				.toISOString()
+				.split("T")[0],
+			notes: formData.problemDescription,
+			priority: "Medium",
+			contactInfo: {
+				name: formData.contactName,
+				phone: formData.contactPhone,
+				email: formData.contactEmail,
+			},
+			vehicleDetails: {
+				make: formData.vehicleMake,
+				model: formData.vehicleModel,
+				year: formData.vehicleYear,
+				vin: formData.vehicleVIN,
+			},
+			progress: 0,
+			lastUpdated: new Date().toISOString(),
+			createdAt: new Date().toISOString(),
+		};
+
+		// Save to localStorage
+		const existingBookings = JSON.parse(
+			localStorage.getItem("serviceBookings") || "[]"
+		);
+		existingBookings.push(newBooking);
+		localStorage.setItem("serviceBookings", JSON.stringify(existingBookings));
+
 		// Simulate submission
 		setTimeout(() => {
+			setIsSubmitting(false);
 			Swal.fire({
 				title: "Booking Submitted!",
-				text: "Your service booking has been received. You will receive a confirmation email shortly.",
+				text: `Your service booking (${newBooking.id}) has been received. You will receive a confirmation email shortly.`,
 				icon: "success",
-				confirmButtonText: "OK",
-			}).then(() => {
+				confirmButtonText: "View Status",
+			}).then((result) => {
 				setShowBookingModal(false);
+				// Reset form
+				setFormData({
+					serviceCategory: "",
+					workshopLocation: "",
+					preferredDate: "",
+					problemDescription: "",
+					contactName: "",
+					contactEmail: "",
+					contactPhone: "",
+					vehicleMake: "",
+					vehicleModel: "",
+					vehicleYear: "",
+					vehicleVIN: "",
+					images: [],
+					videos: [],
+				});
 				navigate("/service-status");
 			});
-			setIsSubmitting(false);
 		}, 2000);
 	};
 

@@ -1,4 +1,4 @@
-// import { carListings } from "@/data/cars";
+import { carListings } from "@/data/cars";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Pagination } from "swiper/modules";
@@ -9,50 +9,81 @@ import Accordion from "../common/Accordions";
 import { useApi } from "@/providers/ApiProvider";
 
 export default function Compare() {
-	const { carListings } = useApi();
+	const { carListings: apiCarListings } = useApi();
 
-	const apiItems = carListings?.data || [];
+	// Static cars from data file as fallback/default
+	const staticCars = carListings.slice(0, 10);
 
-	// Only show On Sale cars as available choices
-	const availableCars = apiItems.filter((c) => c.status === "On Sale");
+	const apiItems = apiCarListings?.data || [];
 
-	// helper to normalize one API car object into the UI shape
+	// Combine static and API cars
+	const allCars = [...staticCars, ...apiItems];
+
+	// Only show On Sale cars as available choices (for API cars)
+	// Static cars don't have status, so include them all
+	const availableCars = allCars.filter(
+		(c) => !c.status || c.status === "On Sale"
+	);
+
+	// helper to normalize car object (handles both static and API car formats)
 	const normalize = (c) => {
 		if (!c) return null;
+
+		// Handle both static and API car formats
 		const featuredImage =
-			c.featured_image?.image_url || c.featured_image?.image || "";
-		const otherImages = (c.images || []).map(
-			(img) => img.image_url || img.image || ""
-		);
+			c.featured_image?.image_url ||
+			c.featured_image?.image ||
+			c.imgSrc ||
+			c.allImages?.[0] ||
+			"";
+
+		const otherImages = c.images
+			? (c.images || []).map((img) => img.image_url || img.image || "")
+			: c.allImages || [];
+
 		return {
 			id: c.id,
-			title: c.title || "",
-			year: c.model_year?.year || c.model_year || "",
-			type: c.body_type?.title || "",
-			price: Number(c.selling_price) || c.selling_price || 0,
+			title: c.title || c.model || "",
+			year: c.model_year?.year || c.model_year || c.year || "",
+			type: c.body_type?.title || c.body || c.type || "",
+			price: Number(c.selling_price) || c.price || 0,
 			images: [featuredImage, ...otherImages].filter(Boolean),
-			totalImage:
-				c.total_images || (otherImages.length ? otherImages.length : 1),
+			totalImage: c.total_images || otherImages.length || 1,
 			authorImage:
-				c.dealer?.logo || featuredImage || "/assets/images/author/1.png",
-			authorName: c.dealer?.name || c.dealer?.title || "",
+				c.dealer?.logo ||
+				c.authorImage ||
+				featuredImage ||
+				"/assets/images/author/1.png",
+			authorName: c.dealer?.name || c.dealer?.title || c.authorName || "",
 			featured: c.is_featured || c.featured_image?.is_featured || false,
-			fuelType: c.fuel_type?.title || "",
+			fuelType: c.fuel_type?.title || c.fuelType || "",
 			km: c.mileage || c.kms || c.km || 0,
 			transmission: c.gear_type?.title || c.transmission || "",
 			ownership: c.owner_type?.title || c.owner || c.ownership || "",
-			registrationYear: c.model_year?.year || c.model_year || "",
+			registrationYear: c.model_year?.year || c.model_year || c.year || "",
 			insuranceType: c.insurance_type?.title || c.insurance_type || "",
 			seats: c.seats || c.no_of_seats || c.seating_capacity || "",
 			engineDisplacement:
-				c.engine_displacement || c.engine_capacity || c.engine || "",
+				c.engine_displacement ||
+				c.engine_capacity ||
+				c.engine ||
+				c.cylinder ||
+				"",
 			location:
 				c.location || c.city || c.dealer?.location || c.dealer?.address || "",
 			slug: c.slug || "",
+			make: c.make || "",
+			color: c.color || "",
+			door: c.door || "",
 		};
 	};
 
-	const [selectedIds, setSelectedIds] = useState(["", "", ""]);
+	// Initialize with first 3 static cars for default comparison
+	const [selectedIds, setSelectedIds] = useState([
+		String(staticCars[0]?.id || ""),
+		String(staticCars[1]?.id || ""),
+		String(staticCars[2]?.id || ""),
+	]);
 
 	const compareItems = [0, 1, 2].map((idx) => {
 		const id = selectedIds[idx];
@@ -150,7 +181,7 @@ export default function Compare() {
 															selectedIds[i] !== String(opt.id)
 														}
 													>
-														{opt.title}
+														{opt.title || opt.model}
 													</option>
 												))}
 											</select>
