@@ -1,16 +1,21 @@
-import { createChatBotMessage } from 'react-chatbot-kit';
+import { createChatBotMessage } from "react-chatbot-kit";
 
 const config = {
-  botName: "AutoBot",
-  initialMessages: [createChatBotMessage("Hi! I'm AutoBot, your car assistant. How can I help you today?")],
-  customStyles: {
-    botMessageBox: {
-      backgroundColor: "#376B7E",
-    },
-    chatButton: {
-      backgroundColor: "#376B7E",
-    },
-  },
+	botName: "AutoBot",
+	initialMessages: [
+		createChatBotMessage(
+			"Hi! I'm AutoBot. Ask me about cars, financing, service booking, or recommendations."
+		),
+	],
+	customStyles: {
+		botMessageBox: {
+			backgroundColor: "#E90A1D",
+			color: "#fff",
+		},
+		chatButton: {
+			backgroundColor: "#E90A1D",
+		},
+	},
 };
 
 export default config;

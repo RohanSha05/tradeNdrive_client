@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { blogPages, homepages, listingPages, otherPages } from "@/data/menu";
+import CarSearchbyTitle from "../carSearchbyTitle/CarSearchbyTitle";
 
 export default function Nav() {
 	const { pathname } = useLocation();
@@ -59,9 +60,8 @@ export default function Nav() {
 					</li>
 				</ul>
 			</li>
-
 			<li className={"contact" == pathname.split("/")[1] ? "current" : ""}>
-				<Link to={`/contact`}>Contact</Link>
+				<CarSearchbyTitle variant="nav" />
 			</li>
 		</>
 	);

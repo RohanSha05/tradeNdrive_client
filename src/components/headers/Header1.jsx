@@ -3,7 +3,6 @@ import Nav from "./Nav";
 import { Link } from "react-router-dom";
 import MobileNav from "./MobileNav";
 import { useApi } from "@/providers/ApiProvider";
-import CarSearchbyTitle from "../carSearchbyTitle/carSearchbyTitle";
 import HeaderAuth from "../common/HeaderAuth";
 
 export default function Header1() {
@@ -54,7 +53,6 @@ export default function Header1() {
 											</ul>
 										</div>
 									</nav>
-									{/* <CarSearchbyTitle></CarSearchbyTitle> */}
 									{/* Main Menu End */}
 								</div>
 								<div className="header-account">

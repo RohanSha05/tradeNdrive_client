@@ -55,23 +55,23 @@ const HeaderAuth = () => {
 		<div className="header-user-info d-flex align-items-center">
 			{/* Service Status Indicator */}
 			<div className="me-3">
-				<a 
-					href="/service-status" 
+				<a
+					href="/service-status"
 					className="btn btn-sm position-relative"
-					style={{ 
-						backgroundColor: "#E90A1D", 
+					style={{
+						backgroundColor: "#E90A1D",
 						color: "white",
 						border: "none",
 						padding: "6px 12px",
 						borderRadius: "20px",
 						fontSize: "0.85rem",
-						textDecoration: "none"
+						textDecoration: "none",
 					}}
 					title="Check Service Status"
 				>
 					<i className="fas fa-tools me-1"></i>
 					Service Status
-					<span 
+					<span
 						className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning"
 						style={{ fontSize: "0.7em", padding: "2px 6px" }}
 					>
@@ -80,7 +80,6 @@ const HeaderAuth = () => {
 				</a>
 			</div>
 
-			
 			<div className="dropdown">
 				<button
 					className="btn btn-link dropdown-toggle text-decoration-none"
@@ -121,63 +120,124 @@ const HeaderAuth = () => {
 						{user.displayName || user.email?.split("@")[0]}
 					</span>
 				</button>
-				<ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+				<ul
+					className="dropdown-menu dropdown-menu-end"
+					aria-labelledby="userDropdown"
+					style={{
+						minWidth: "280px",
+						maxWidth: "320px",
+						padding: "0.5rem 0",
+						marginTop: "0.5rem",
+						boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+						border: "1px solid rgba(0,0,0,0.1)",
+						borderRadius: "8px",
+					}}
+				>
 					<li>
-						<div className="dropdown-item-text">
+						<div
+							className="dropdown-item-text"
+							style={{
+								padding: "0.75rem 1rem",
+								backgroundColor: "#f8f9fa",
+							}}
+						>
 							<strong>{user.displayName || "User"}</strong>
 							<br />
-							<small className="text-muted">{user.email}</small>
+							<small className="text-muted" style={{ fontSize: "0.85rem" }}>
+								{user.email}
+							</small>
 						</div>
 					</li>
 					<li>
 						<hr className="dropdown-divider" />
 					</li>
 					<li>
-						<a className="dropdown-item" href="/dashboard">
-							<i className="fas fa-tachometer-alt me-2"></i>
+						<a
+							className="dropdown-item"
+							href="/dashboard"
+							style={{ padding: "0.6rem 1rem", fontSize: "0.95rem" }}
+						>
+							<i
+								className="fas fa-tachometer-alt me-2"
+								style={{ width: "18px" }}
+							></i>
 							Dashboard
 						</a>
 					</li>
 					<li>
-						<a className="dropdown-item" href="/service-booking">
-							<i className="fas fa-calendar-plus me-2"></i>
+						<a
+							className="dropdown-item"
+							href="/service-booking"
+							style={{ padding: "0.6rem 1rem", fontSize: "0.95rem" }}
+						>
+							<i
+								className="fas fa-calendar-plus me-2"
+								style={{ width: "18px" }}
+							></i>
 							Book New Service
 						</a>
 					</li>
 					<li>
-						<a className="dropdown-item" href="/service-status">
-							<i className="fas fa-clock me-2"></i>
+						<a
+							className="dropdown-item"
+							href="/service-status"
+							style={{ padding: "0.6rem 1rem", fontSize: "0.95rem" }}
+						>
+							<i className="fas fa-clock me-2" style={{ width: "18px" }}></i>
 							Service Status
 						</a>
 					</li>
 					<li>
-						<a className="dropdown-item" href="/service-history">
-							<i className="fas fa-history me-2"></i>
+						<a
+							className="dropdown-item"
+							href="/service-history"
+							style={{ padding: "0.6rem 1rem", fontSize: "0.95rem" }}
+						>
+							<i className="fas fa-history me-2" style={{ width: "18px" }}></i>
 							Service History
 						</a>
 					</li>
 					<li>
-						<a className="dropdown-item" href="/my-review">
-							<i className="fas fa-star me-2"></i>
+						<a
+							className="dropdown-item"
+							href="/my-review"
+							style={{ padding: "0.6rem 1rem", fontSize: "0.95rem" }}
+						>
+							<i className="fas fa-star me-2" style={{ width: "18px" }}></i>
 							My Reviews
 						</a>
 					</li>
 					<li>
-						<a className="dropdown-item" href="/profile">
-							<i className="fas fa-user-cog me-2"></i>
+						<a
+							className="dropdown-item"
+							href="/profile"
+							style={{ padding: "0.6rem 1rem", fontSize: "0.95rem" }}
+						>
+							<i className="fas fa-user-cog me-2" style={{ width: "18px" }}></i>
 							Profile & Settings
 						</a>
 					</li>
-				
+
 					<li>
-						<a className="dropdown-item" href="/contact">
-							<i className="fas fa-phone me-2"></i>
+						<a
+							className="dropdown-item"
+							href="/contact"
+							style={{ padding: "0.6rem 1rem", fontSize: "0.95rem" }}
+						>
+							<i className="fas fa-phone me-2" style={{ width: "18px" }}></i>
 							Contact Support
 						</a>
 					</li>
 					<li>
-						<a className="dropdown-item" href="/faq">
-							<i className="fas fa-question-circle me-2"></i>
+						<a
+							className="dropdown-item"
+							href="/faq"
+							style={{ padding: "0.6rem 1rem", fontSize: "0.95rem" }}
+						>
+							<i
+								className="fas fa-question-circle me-2"
+								style={{ width: "18px" }}
+							></i>
 							Help & FAQ
 						</a>
 					</li>
@@ -188,8 +248,16 @@ const HeaderAuth = () => {
 						<button
 							className="dropdown-item text-danger"
 							onClick={handleLogout}
+							style={{
+								padding: "0.6rem 1rem",
+								fontSize: "0.95rem",
+								fontWeight: "500",
+							}}
 						>
-							<i className="fas fa-sign-out-alt me-2"></i>
+							<i
+								className="fas fa-sign-out-alt me-2"
+								style={{ width: "18px" }}
+							></i>
 							Logout
 						</button>
 					</li>

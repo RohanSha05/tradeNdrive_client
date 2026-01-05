@@ -39,7 +39,6 @@ export default function HomePage1() {
 			</div>
 			<Hero />
 			<Filter />
-			{/* <CarSearchbyTitle></CarSearchbyTitle> */}
 			<CarBrands2></CarBrands2>
 			<Cars />
 			<SoldCars />
