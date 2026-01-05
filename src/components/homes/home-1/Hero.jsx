@@ -52,11 +52,14 @@ export default function Hero() {
 										<div className="content po-content-two">
 											<div className="heading">
 												<h1 className="text-color-1 fade-item fade-item-1">
-													{elm.title}
+													tradeNDrive
 												</h1>
 												<ul className="ul flex flex-wrap category-list-car fade-item fade-item-2">
 													<p className="w-50 text-color-1 text-2xl fade-item fade-item-3 text-wrap">
-														{elm.short_description}
+														At tradeNDrive Sales & Repair, we offer quality
+														vehicles and trusted repair services, backed by
+														years of experience and thorough inspections—all at
+														competitive prices.
 													</p>
 												</ul>
 											</div>

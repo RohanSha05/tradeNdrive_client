@@ -218,10 +218,10 @@ export default function ServiceStatus() {
 	return (
 		<>
 			<Header1 />
-			<div className="service-status py-5 bg-light">
+			<div className="service-status py-5 bg-light mt-9">
 				<div className="container">
 					{/* Header Section */}
-					<div className="text-center mb-5">
+					<div className="text-center mb-5 mt-5">
 						<h1 className="mb-3" style={{ color: "#E90A1D" }}>
 							<i className="fa fa-chart-line me-2"></i>Service Status Tracking
 						</h1>

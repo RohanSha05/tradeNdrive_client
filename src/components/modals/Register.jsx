@@ -285,11 +285,11 @@ export default function Register() {
 													className="sc-button"
 													type="button"
 													onClick={handleGoogleSignIn}
-													style={{
-														backgroundColor: "#fff",
-														color: "#000",
-														border: "1px solid #ddd",
-													}}
+													// style={{
+													// 	backgroundColor: "#fff",
+													// 	color: "#000",
+													// 	border: "1px solid #ddd",
+													// }}
 												>
 													<i className="fab fa-google me-2"></i>
 													<span>Sign up with Google</span>

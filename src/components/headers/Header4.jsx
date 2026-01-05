@@ -60,7 +60,7 @@ export default function Header4({ dashboardData }) {
 											<i className="fal fa-angle-down" />
 										</p>
 									</a>
-
+									{/* 
 									<div className="flat-bt-top">
 										<Link className="sc-button" to={`/dashboard/add-listing`}>
 											<svg
@@ -97,7 +97,7 @@ export default function Header4({ dashboardData }) {
 											</svg>
 											<span>Add listing</span>
 										</Link>
-									</div>
+									</div> */}
 								</div>
 								<div
 									className="mobile-nav-toggler mobile-button"

@@ -10,6 +10,15 @@ export default function CarInfo({ carItem }) {
 	};
 
 	const handlePayment = () => {
+		// Ensure image data is included
+		const carDataWithImage = {
+			...carItem,
+			imgSrc: carItem.imgSrc || carItem.allImages?.[0],
+			allImages: carItem.allImages || (carItem.imgSrc ? [carItem.imgSrc] : []),
+		};
+
+		console.log("Passing to checkout:", carDataWithImage);
+
 		Swal.fire({
 			title: "Proceed to Payment",
 			text: `You are about to pay $${carItem.selling_price?.toLocaleString()} for ${
@@ -21,7 +30,7 @@ export default function CarInfo({ carItem }) {
 			cancelButtonText: "Cancel",
 		}).then((result) => {
 			if (result.isConfirmed) {
-				navigate("/secure-checkout", { state: { carItem } });
+				navigate("/secure-checkout", { state: { carItem: carDataWithImage } });
 			}
 		});
 	};

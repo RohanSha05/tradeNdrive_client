@@ -43,6 +43,12 @@ const ContactPage = lazy(() => import("./pages/other-pages/contact"));
 const Login = lazy(() => import("./components/modals/Login"));
 const Register = lazy(() => import("./components/modals/Register"));
 const ForgotPassword = lazy(() => import("./components/modals/ForgotPassword"));
+const ProfilePage = lazy(() => import("./pages/other-pages/profile"));
+const SettingsPage = lazy(() => import("./pages/other-pages/settings"));
+const MyListingPage = lazy(() => import("./pages/dashboard/my-listing"));
+const MyFavoritePage = lazy(() => import("./pages/dashboard/my-favorite"));
+const MessagePage = lazy(() => import("./pages/dashboard/message"));
+const MyProfilePage = lazy(() => import("./pages/dashboard/my-profile"));
 const DashboardPage = lazy(() => import("./pages/dashboard/dashboard"));
 const TradeAppFrom = lazy(() =>
 	import("./pages/trade-application-form/TradeAppFrom")
@@ -55,6 +61,9 @@ const ServiceBooking = lazy(() =>
 );
 const ServiceStatus = lazy(() =>
 	import("./pages/service-booking/ServiceStatus")
+);
+const ServiceHistory = lazy(() =>
+	import("./pages/service-booking/ServiceHistory")
 );
 const ServiceAdmin = lazy(() => import("./pages/service-booking/ServiceAdmin"));
 
@@ -181,11 +190,45 @@ function App() {
 								<Route path="login" element={<Login />} />
 								<Route path="register" element={<Register />} />
 								<Route path="forgot-password" element={<ForgotPassword />} />
+								<Route path="profile" element={<ProfilePage />} />
+								<Route path="settings" element={<SettingsPage />} />
 								<Route
 									path="dashboard"
 									element={
 										<PrivateRoute>
 											<DashboardPage />
+										</PrivateRoute>
+									}
+								/>
+								<Route
+									path="dashboard/my-listing"
+									element={
+										<PrivateRoute>
+											<MyListingPage />
+										</PrivateRoute>
+									}
+								/>
+								<Route
+									path="dashboard/my-favorite"
+									element={
+										<PrivateRoute>
+											<MyFavoritePage />
+										</PrivateRoute>
+									}
+								/>
+								<Route
+									path="dashboard/message"
+									element={
+										<PrivateRoute>
+											<MessagePage />
+										</PrivateRoute>
+									}
+								/>
+								<Route
+									path="dashboard/my-profile"
+									element={
+										<PrivateRoute>
+											<MyProfilePage />
 										</PrivateRoute>
 									}
 								/>
@@ -202,6 +245,7 @@ function App() {
 								<Route path="secure-checkout" element={<SecureCheckout />} />
 								<Route path="service-booking" element={<ServiceBooking />} />
 								<Route path="service-status" element={<ServiceStatus />} />
+								<Route path="service-history" element={<ServiceHistory />} />
 								<Route path="service-admin" element={<ServiceAdmin />} />
 							</Route>
 						</Routes>
