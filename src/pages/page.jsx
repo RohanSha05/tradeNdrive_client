@@ -41,7 +41,7 @@ export default function HomePage1() {
 			<Filter />
 			<CarBrands2></CarBrands2>
 			<Cars />
-			<SoldCars />
+			{/* <SoldCars /> */}
 			<CarReview />
 			<Features1></Features1>
 			<CarBrands />

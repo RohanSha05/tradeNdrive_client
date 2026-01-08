@@ -21,6 +21,38 @@ export default function Header1() {
 
 	return (
 		<header className="main-header style2">
+			<style>{`
+				.main-header .main-menu .navigation > li {
+					margin-right: 15px !important;
+				}
+				.main-header .main-menu .navigation > li > a {
+					font-size: 14px !important;
+					padding: 37px 0px !important;
+					white-space: nowrap;
+				}
+				.main-header .main-menu {
+					margin-left: 80px !important;
+				}
+				@media (max-width: 1400px) {
+					.main-header .main-menu .navigation > li {
+						margin-right: 10px !important;
+					}
+					.main-header .main-menu .navigation > li > a {
+						font-size: 13px !important;
+					}
+				}
+				@media (max-width: 1200px) {
+					.main-header .main-menu .navigation > li {
+						margin-right: 8px !important;
+					}
+					.main-header .main-menu .navigation > li > a {
+						font-size: 12px !important;
+					}
+					.main-header .main-menu {
+						margin-left: 40px !important;
+					}
+				}
+			`}</style>
 			{/* Header Lower */}
 			<div className="header-lower">
 				<div className="container2">

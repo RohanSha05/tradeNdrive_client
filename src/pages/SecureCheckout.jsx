@@ -175,6 +175,207 @@ export default function SecureCheckout() {
 	};
 
 	const handleNextStep = () => {
+		// Validation for each step
+		if (currentStep === 2) {
+			// Step 2: Personal Information & Trade-In validation
+			const requiredFields = [
+				"fullName",
+				"dateOfBirth",
+				"address",
+				"city",
+				"state",
+				"zipCode",
+				"email",
+				"phone",
+				"driverLicenseNumber",
+				"driverLicenseState",
+			];
+
+			const missingFields = requiredFields.filter(
+				(field) => !formData[field] || formData[field].toString().trim() === ""
+			);
+
+			if (missingFields.length > 0) {
+				Swal.fire({
+					icon: "error",
+					title: "Missing Information",
+					text: `Please fill in all required fields: ${missingFields.join(
+						", "
+					)}`,
+					confirmButtonText: "OK",
+				});
+				return;
+			}
+
+			// Check file uploads
+			if (
+				!formData.driverLicenseFront ||
+				!formData.driverLicenseBack ||
+				!formData.selfiePhoto
+			) {
+				Swal.fire({
+					icon: "error",
+					title: "Missing Documents",
+					text: "Please upload all required identity verification documents.",
+					confirmButtonText: "OK",
+				});
+				return;
+			}
+
+			// Validate email format
+			const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+			if (!emailRegex.test(formData.email)) {
+				Swal.fire({
+					icon: "error",
+					title: "Invalid Email",
+					text: "Please enter a valid email address.",
+					confirmButtonText: "OK",
+				});
+				return;
+			}
+		} else if (currentStep === 3) {
+			// Step 3: Payment & Financing validation
+			if (financingOption === "financing") {
+				const financingFields = [
+					"downPayment",
+					"loanTerm",
+					"employmentStatus",
+					"annualIncome",
+				];
+				const missingFinancing = financingFields.filter(
+					(field) =>
+						!formData[field] || formData[field].toString().trim() === ""
+				);
+
+				if (missingFinancing.length > 0) {
+					Swal.fire({
+						icon: "error",
+						title: "Missing Financing Information",
+						text: `Please fill in all financing details: ${missingFinancing.join(
+							", "
+						)}`,
+						confirmButtonText: "OK",
+					});
+					return;
+				}
+			}
+
+			// Payment validation
+			if (paymentMethod === "credit-card") {
+				const paymentFields = [
+					"cardholderName",
+					"cardNumber",
+					"expiryDate",
+					"cvv",
+				];
+				const missingPayment = paymentFields.filter(
+					(field) =>
+						!formData[field] || formData[field].toString().trim() === ""
+				);
+
+				if (missingPayment.length > 0) {
+					Swal.fire({
+						icon: "error",
+						title: "Missing Payment Information",
+						text: `Please fill in all payment details: ${missingPayment.join(
+							", "
+						)}`,
+						confirmButtonText: "OK",
+					});
+					return;
+				}
+
+				// Basic card number validation (16 digits)
+				const cardNumber = formData.cardNumber.replace(/\s/g, "");
+				if (
+					cardNumber.length < 13 ||
+					cardNumber.length > 19 ||
+					!/^\d+$/.test(cardNumber)
+				) {
+					Swal.fire({
+						icon: "error",
+						title: "Invalid Card Number",
+						text: "Please enter a valid card number.",
+						confirmButtonText: "OK",
+					});
+					return;
+				}
+
+				// Expiry date validation
+				const expiryRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+				if (!expiryRegex.test(formData.expiryDate)) {
+					Swal.fire({
+						icon: "error",
+						title: "Invalid Expiry Date",
+						text: "Please enter expiry date in MM/YY format.",
+						confirmButtonText: "OK",
+					});
+					return;
+				}
+
+				// CVV validation
+				if (formData.cvv.length < 3 || formData.cvv.length > 4) {
+					Swal.fire({
+						icon: "error",
+						title: "Invalid CVV",
+						text: "Please enter a valid CVV (3-4 digits).",
+						confirmButtonText: "OK",
+					});
+					return;
+				}
+			}
+
+			// Insurance validation
+			if (formData.hasInsurance) {
+				const insuranceFields = [
+					"insuranceProvider",
+					"insurancePolicyNumber",
+					"insuranceStartDate",
+				];
+				const missingInsurance = insuranceFields.filter(
+					(field) =>
+						!formData[field] || formData[field].toString().trim() === ""
+				);
+
+				if (missingInsurance.length > 0 || !formData.proofOfInsurance) {
+					Swal.fire({
+						icon: "error",
+						title: "Missing Insurance Information",
+						text: "Please provide all insurance details and upload proof of insurance.",
+						confirmButtonText: "OK",
+					});
+					return;
+				}
+			}
+
+			// Delivery validation
+			if (formData.deliveryOption === "delivery") {
+				const deliveryFields = [
+					"deliveryAddress",
+					"deliveryCity",
+					"deliveryState",
+					"deliveryZipCode",
+					"deliveryDate",
+				];
+				const missingDelivery = deliveryFields.filter(
+					(field) =>
+						!formData[field] || formData[field].toString().trim() === ""
+				);
+
+				if (missingDelivery.length > 0) {
+					Swal.fire({
+						icon: "error",
+						title: "Missing Delivery Information",
+						text: `Please fill in all delivery details: ${missingDelivery.join(
+							", "
+						)}`,
+						confirmButtonText: "OK",
+					});
+					return;
+				}
+			}
+		}
+
 		setCurrentStep((prev) => prev + 1);
 		window.scrollTo({ top: 0, behavior: "smooth" });
 	};
